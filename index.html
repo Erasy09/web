@@ -4,7 +4,100 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Assignment #3 — Advanced CSS (Flexbox & Grid)</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ====== Basic reset and variables ====== */
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --accent:#0b67ff;
+      --muted:#6b7280;
+      --gap:1rem;
+      --radius:12px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111;line-height:1.4}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:32px auto;padding:24px}
+
+    /* ====== Header / Navigation (Flexbox) ====== */
+    header.site-header{background:linear-gradient(180deg, #fff, #fbfdff);border-radius:14px;padding:16px;margin-bottom:20px;box-shadow:0 6px 18px rgba(10,20,40,0.05)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#34a3ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .brand .title{font-weight:700}
+    nav.main-nav{display:flex;gap:12px;align-items:center}
+    nav.main-nav a{padding:8px 12px;border-radius:8px;display:inline-block}
+    nav.main-nav a:hover{background:rgba(11,103,255,0.08)}
+
+    /* small-screen hamburger replacement */
+    .nav .links-wrap{display:flex;gap:8px}
+    @media (max-width:700px){
+      nav.main-nav{display:none}
+    }
+
+    /* ====== Card Row (Flexbox cards) ====== */
+    .card-row{display:flex;gap:var(--gap);align-items:stretch}
+    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 14px rgba(16,24,40,0.06);flex:1;display:flex;flex-direction:column;min-width:0}
+    .card img{width:100%;height:160px;object-fit:cover;display:block}
+    .card .card-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+    .card .card-body h3{margin:0;font-size:1.05rem}
+    .card .card-body p{margin:0;color:var(--muted);font-size:0.95rem}
+    .card .card-footer{padding:16px;border-top:1px solid #f1f3f6;background:transparent;display:flex;justify-content:flex-end}
+    .btn{border:0;padding:10px 14px;border-radius:10px;background:var(--accent);color:white;cursor:pointer}
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(11,67,170,0.12);transition:all .25s ease}
+
+    /* ensure equal heights (cards stretch by flex) */
+    .card-row .card{height:100%}
+
+    /* ====== Grid Layout (grid areas) ====== */
+    .page-grid{display:grid;grid-template-columns:220px 1fr;grid-template-rows:auto 1fr auto;gap:12px;grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";min-height:400px}
+
+    .pg-header{grid-area:header;background:var(--card);padding:12px;border-radius:12px}
+    .pg-sidebar{grid-area:sidebar;background:var(--card);padding:12px;border-radius:12px}
+    .pg-main{grid-area:main;background:var(--card);padding:12px;border-radius:12px}
+    .pg-footer{grid-area:footer;background:var(--card);padding:12px;border-radius:12px}
+
+    @media (max-width:900px){
+      .page-grid{grid-template-columns:1fr;grid-template-areas:
+        "header"
+        "main"
+        "sidebar"
+        "footer"}
+    }
+
+    /* ====== Image Gallery (Grid) ====== */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery .item{position:relative;overflow:hidden;border-radius:8px}
+    .gallery img{display:block;width:100%;height:160px;object-fit:cover;transition:transform .35s ease}
+    .gallery .item:hover img{transform:scale(1.06)}
+    .caption{position:absolute;left:0;right:0;bottom:0;padding:8px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.55));color:#fff;opacity:0;transform:translateY(6px);transition:all .25s ease}
+    .gallery .item:hover .caption{opacity:1;transform:translateY(0)}
+
+    /* ====== Portfolio: mix grid + flex ====== */
+    .portfolio-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .project{background:var(--card);border-radius:10px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
+    .project .meta{display:flex;gap:8px;align-items:center}
+    .project h4{margin:0}
+    .project p{margin:0;color:var(--muted)}
+    .project .actions{display:flex;gap:8px;justify-content:flex-end}
+
+    @media (max-width:900px){
+      .portfolio-grid{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+    }
+
+    /* small utility */
+    h2{margin:0 0 12px 0}
+    .section{margin-bottom:20px}
+    .muted{color:var(--muted);font-size:0.95rem}
+    footer.note{font-size:0.85rem;color:var(--muted);text-align:center;margin-top:12px}
+
+  </style>
 </head>
 <body>
   <div class="container">
@@ -16,8 +109,7 @@
           <div class="logo">A3</div>
           <div>
             <div class="title">Assignment #3 — Advanced CSS</div>
-            <div class="muted">Student: <strong>Tortkara Erasyl</strong> &nbsp;|&nbsp; Group: <strong>SE-2426</strong></div>
-            <div class="muted">Astana IT University</div>
+            <div class="muted">Student: <strong>Tortkara Erasyl</strong> &nbsp;|&nbsp; Group: <strong><!-- WRITE GROUP HERE -->SE-2426</strong></div>
           </div>
         </div>
         <nav class="main-nav" aria-label="Main Navigation">
@@ -36,7 +128,7 @@
 
       <div class="card-row" style="margin-top:12px">
         <article class="card">
-          <img src="images/card1.jpg" alt="Card image 1">
+          <img src="https://picsum.photos/id/1015/800/500" alt="Card image 1">
           <div class="card-body">
             <h3>Card Title One</h3>
             <p>Short description that explains what this card is about. Keep it concise and useful.</p>
@@ -47,7 +139,7 @@
         </article>
 
         <article class="card">
-          <img src="images/card2.jpg" alt="Card image 2">
+          <img src="https://picsum.photos/id/1025/800/500" alt="Card image 2">
           <div class="card-body">
             <h3>Card Title Two</h3>
             <p>Another short description. All cards share the same structure and equal height thanks to flexbox.</p>
@@ -58,7 +150,7 @@
         </article>
 
         <article class="card">
-          <img src="images/card3.jpg" alt="Card image 3">
+          <img src="https://picsum.photos/id/1035/800/500" alt="Card image 3">
           <div class="card-body">
             <h3>Card Title Three</h3>
             <p>Third description — demonstrates equal heights and the hover lift effect defined in CSS.</p>
@@ -95,15 +187,16 @@
         <h3 class="muted">Task 3 — Image Gallery</h3>
         <p class="muted">A gallery of 9 images using CSS Grid. Hover to see captions.</p>
         <div id="gallery" class="gallery" style="margin-top:12px">
-          <figure class="item"><img src="images/gallery1.jpg" alt="gallery1"><figcaption class="caption">Caption 1</figcaption></figure>
-          <figure class="item"><img src="images/gallery2.jpg" alt="gallery2"><figcaption class="caption">Caption 2</figcaption></figure>
-          <figure class="item"><img src="images/gallery3.jpg" alt="gallery3"><figcaption class="caption">Caption 3</figcaption></figure>
-          <figure class="item"><img src="images/gallery4.jpg" alt="gallery4"><figcaption class="caption">Caption 4</figcaption></figure>
-          <figure class="item"><img src="images/gallery5.jpg" alt="gallery5"><figcaption class="caption">Caption 5</figcaption></figure>
-          <figure class="item"><img src="images/gallery6.jpg" alt="gallery6"><figcaption class="caption">Caption 6</figcaption></figure>
-          <figure class="item"><img src="images/gallery7.jpg" alt="gallery7"><figcaption class="caption">Caption 7</figcaption></figure>
-          <figure class="item"><img src="images/gallery8.jpg" alt="gallery8"><figcaption class="caption">Caption 8</figcaption></figure>
-          <figure class="item"><img src="images/gallery9.jpg" alt="gallery9"><figcaption class="caption">Caption 9</figcaption></figure>
+          <!-- Nine images. Replace with your own images when submitting the project folder. -->
+          <figure class="item"><img src="https://picsum.photos/id/1003/600/400" alt="gallery1"><figcaption class="caption">Caption 1</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1011/600/400" alt="gallery2"><figcaption class="caption">Caption 2</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1012/600/400" alt="gallery3"><figcaption class="caption">Caption 3</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1013/600/400" alt="gallery4"><figcaption class="caption">Caption 4</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1014/600/400" alt="gallery5"><figcaption class="caption">Caption 5</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1016/600/400" alt="gallery6"><figcaption class="caption">Caption 6</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1018/600/400" alt="gallery7"><figcaption class="caption">Caption 7</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1020/600/400" alt="gallery8"><figcaption class="caption">Caption 8</figcaption></figure>
+          <figure class="item"><img src="https://picsum.photos/id/1024/600/400" alt="gallery9"><figcaption class="caption">Caption 9</figcaption></figure>
         </div>
       </div>
     </section>
@@ -157,6 +250,61 @@
     </section>
 
     <footer class="note">Good luck with the defense — be ready to explain how you used flexbox and grid, and how your layout changes on different screen sizes.</footer>
+
+    <!-- ===== Report template (copy into a DOC file for submission) ===== -->
+    <!--
+      REPORT TEMPLATE — copy/paste into a Word (.doc/.docx) document for submission
+
+      Title: Assignment #3 — Advanced CSS (Flexbox & Grid)
+      Student: [FULL NAME]
+      Group: [YOUR GROUP]
+
+      1. Parts and Screens
+        Part 1. Flexbox
+          Task 0. Navigation Bar
+            - Steps completed: Created header with logo (left) and links (right).
+            - Flex properties used: display:flex; align-items:center; justify-content:space-between;
+            - Screenshot: (attach screenshot of the header/navigation)
+
+          Task 1. Card Row
+            - Steps completed: Created 3 cards in a flex container.
+            - Flex properties used: display:flex on .card-row; .card set to flex:1 to ensure equal widths/heights.
+            - Hover effect: translateY and shadow on .card:hover
+            - Screenshot: (attach screenshot showing card row)
+
+        Part 2. Grid System
+          Task 2. Page Layout with Grid Areas
+            - Steps completed: Implemented layout with header, sidebar, main, footer using CSS Grid and grid-template-areas.
+            - Grid definition: grid-template-columns:220px 1fr; grid-template-rows:auto 1fr auto;
+            - Screenshot: (attach screenshot showing grid areas)
+
+          Task 3. Image Gallery
+            - Steps completed: 9 images in grid; equal columns and rows via grid; gap between images; hover caption overlay.
+            - Screenshot: (attach screenshot of gallery)
+
+        Part 3. Combining Flexbox & Grid
+          Task 4. Portfolio Page
+            - Steps completed: Header uses Flexbox; main uses CSS Grid (projects + sidebar); each project card uses Flexbox for inner layout.
+            - Screenshot: (attach screenshot of portfolio page)
+
+      2. Summary of work process
+        - Tools used: Code editor (VS Code / other), browser for testing.
+        - Approach: First built semantic HTML structure, then implemented layout with Flexbox for header and cards, used Grid for page-level layouts and gallery. Ensured responsive behavior via media queries.
+        - Difficulties and solutions: (short notes — e.g. how equal card heights were achieved with flexbox; how grid areas simplify layout)
+
+      3. Files to submit (zip folder)
+        - index.html (this file)
+        - assets/images/ (put your 9 gallery images + card images here; avoid external URLs for submission)
+        - styles.css (if you prefer separate CSS file)
+        - report.doc or report.docx (the Word document with the template filled and screenshots attached)
+
+      4. Notes for defense
+        - Explain the difference between Flexbox and Grid and why each was used where it was.
+        - Be prepared to describe properties: align-items, justify-content, flex:1, grid-template-areas, grid-template-columns, gap.
+        - Run the page in responsive mode and show the grid switching to single-column on small screens.
+
+      ===== END OF REPORT TEMPLATE =====
+    -->
 
   </div>
 </body>
