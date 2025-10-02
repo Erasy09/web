@@ -1,92 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment #3 - Flexbox & Grid</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assignment #3 — Advanced CSS (Flexbox & Grid)</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Header / Navigation -->
-  <header class="navbar">
-    <div class="logo">Tortkara Erasyl</div>
-    <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Projects</a>
-      <a href="#">Gallery</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+  <div class="container">
 
-  <!-- Flexbox Cards -->
-  <section class="card-row">
-    <div class="card">
-      <img src="images/img1.jpg" alt="Project 1">
-      <h3>Card Title 1</h3>
-      <p>Some description for card 1.</p>
-      <button>Read More</button>
-    </div>
-    <div class="card">
-      <img src="images/img2.jpg" alt="Project 2">
-      <h3>Card Title 2</h3>
-      <p>Some description for card 2.</p>
-      <button>Read More</button>
-    </div>
-    <div class="card">
-      <img src="images/img3.jpg" alt="Project 3">
-      <h3>Card Title 3</h3>
-      <p>Some description for card 3.</p>
-      <button>Read More</button>
-    </div>
-  </section>
-
-  <!-- Grid Layout -->
-  <div class="grid-layout">
-    <header class="grid-header">Header</header>
-    <aside class="grid-sidebar">Sidebar</aside>
-    <main class="grid-main">Main Content</main>
-    <footer class="grid-footer">Footer</footer>
-  </div>
-
-  <!-- Gallery -->
-  <section class="gallery">
-    <div class="gallery-item"><img src="images/g1.jpg" alt=""><span>Caption 1</span></div>
-    <div class="gallery-item"><img src="images/g2.jpg" alt=""><span>Caption 2</span></div>
-    <div class="gallery-item"><img src="images/g3.jpg" alt=""><span>Caption 3</span></div>
-    <div class="gallery-item"><img src="images/g4.jpg" alt=""><span>Caption 4</span></div>
-    <div class="gallery-item"><img src="images/g5.jpg" alt=""><span>Caption 5</span></div>
-    <div class="gallery-item"><img src="images/g6.jpg" alt=""><span>Caption 6</span></div>
-    <div class="gallery-item"><img src="images/g7.jpg" alt=""><span>Caption 7</span></div>
-    <div class="gallery-item"><img src="images/g8.jpg" alt=""><span>Caption 8</span></div>
-    <div class="gallery-item"><img src="images/g9.jpg" alt=""><span>Caption 9</span></div>
-  </section>
-
-  <!-- Portfolio -->
-  <section class="portfolio">
-    <header class="portfolio-header">
-      <div class="logo">Tortkara Erasyl</div>
-      <nav class="nav-links">
-        <a href="#">About</a>
-        <a href="#">Work</a>
-        <a href="#">Contact</a>
-      </nav>
-    </header>
-    <div class="portfolio-main">
-      <div class="projects">
-        <div class="project-card">
-          <h3>Project A</h3>
-          <p>Description about Project A.</p>
-          <button>See More</button>
+    <!-- === Header with placeholders for student name & group === -->
+    <header class="site-header">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo">A3</div>
+          <div>
+            <div class="title">Assignment #3 — Advanced CSS</div>
+            <div class="muted">Student: <strong>Tortkara Erasyl</strong> &nbsp;|&nbsp; Group: <strong>SE-2426</strong></div>
+            <div class="muted">Astana IT University</div>
+          </div>
         </div>
-        <div class="project-card">
-          <h3>Project B</h3>
-          <p>Description about Project B.</p>
-          <button>See More</button>
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="#flex">Flexbox</a>
+          <a href="#grid">Grid Layout</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#portfolio">Portfolio</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== Part 1: Flexbox ===== -->
+    <section id="flex" class="section">
+      <h2>Part 1 — Flexbox</h2>
+      <p class="muted">Task 0: Navigation bar (implemented above using Flexbox). Task 1: Card row below.</p>
+
+      <div class="card-row" style="margin-top:12px">
+        <article class="card">
+          <img src="images/card1.jpg" alt="Card image 1">
+          <div class="card-body">
+            <h3>Card Title One</h3>
+            <p>Short description that explains what this card is about. Keep it concise and useful.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn">Open</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/card2.jpg" alt="Card image 2">
+          <div class="card-body">
+            <h3>Card Title Two</h3>
+            <p>Another short description. All cards share the same structure and equal height thanks to flexbox.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn">Open</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/card3.jpg" alt="Card image 3">
+          <div class="card-body">
+            <h3>Card Title Three</h3>
+            <p>Third description — demonstrates equal heights and the hover lift effect defined in CSS.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn">Open</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Part 2: Grid System ===== -->
+    <section id="grid" class="section">
+      <h2>Part 2 — Grid System</h2>
+      <p class="muted">Task 2: Page layout using CSS Grid (grid areas). Below is an example grid containing header, sidebar, main, footer.</p>
+
+      <div class="page-grid" style="margin-top:12px">
+        <div class="pg-header"><strong>Header (grid area)</strong><div class="muted">This header spans across the top</div></div>
+        <aside class="pg-sidebar"><strong>Sidebar</strong>
+          <ul class="muted" style="padding-left:18px;margin-top:8px">
+            <li>Menu item 1</li>
+            <li>Menu item 2</li>
+            <li>Menu item 3</li>
+          </ul>
+        </aside>
+        <main class="pg-main">
+          <strong>Main content</strong>
+          <p class="muted">This area is the main content and sits in the grid area on the right. The grid switches to single-column on small screens.</p>
+        </main>
+        <div class="pg-footer"><strong>Footer</strong><div class="muted">Footer spans across the bottom of the grid</div></div>
+      </div>
+
+      <div style="margin-top:18px">
+        <h3 class="muted">Task 3 — Image Gallery</h3>
+        <p class="muted">A gallery of 9 images using CSS Grid. Hover to see captions.</p>
+        <div id="gallery" class="gallery" style="margin-top:12px">
+          <figure class="item"><img src="images/gallery1.jpg" alt="gallery1"><figcaption class="caption">Caption 1</figcaption></figure>
+          <figure class="item"><img src="images/gallery2.jpg" alt="gallery2"><figcaption class="caption">Caption 2</figcaption></figure>
+          <figure class="item"><img src="images/gallery3.jpg" alt="gallery3"><figcaption class="caption">Caption 3</figcaption></figure>
+          <figure class="item"><img src="images/gallery4.jpg" alt="gallery4"><figcaption class="caption">Caption 4</figcaption></figure>
+          <figure class="item"><img src="images/gallery5.jpg" alt="gallery5"><figcaption class="caption">Caption 5</figcaption></figure>
+          <figure class="item"><img src="images/gallery6.jpg" alt="gallery6"><figcaption class="caption">Caption 6</figcaption></figure>
+          <figure class="item"><img src="images/gallery7.jpg" alt="gallery7"><figcaption class="caption">Caption 7</figcaption></figure>
+          <figure class="item"><img src="images/gallery8.jpg" alt="gallery8"><figcaption class="caption">Caption 8</figcaption></figure>
+          <figure class="item"><img src="images/gallery9.jpg" alt="gallery9"><figcaption class="caption">Caption 9</figcaption></figure>
         </div>
       </div>
-      <aside class="info">Info Sidebar</aside>
-    </div>
-    <footer class="portfolio-footer">Footer</footer>
-  </section>
+    </section>
+
+    <!-- ===== Part 3: Portfolio (Combining Flexbox & Grid) ===== -->
+    <section id="portfolio" class="section">
+      <h2>Part 3 — Combining Flexbox & Grid (Portfolio)</h2>
+      <p class="muted">Header uses Flexbox. The main section uses CSS Grid to split projects and sidebar. Each project card uses Flexbox for internal layout.</p>
+
+      <div class="portfolio-grid" style="margin-top:12px">
+        <div class="projects">
+          <article class="project">
+            <div>
+              <div class="meta"><strong>Project One</strong></div>
+              <p class="muted">Short project description. This card uses flexbox to keep the button at the bottom.</p>
+            </div>
+            <div class="actions"><button class="btn">View</button></div>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="meta"><strong>Project Two</strong></div>
+              <p class="muted">Another project. Use consistent spacing and typography for a clean look.</p>
+            </div>
+            <div class="actions"><button class="btn">View</button></div>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="meta"><strong>Project Three</strong></div>
+              <p class="muted">Project description goes here. Use images or icons if needed.</p>
+            </div>
+            <div class="actions"><button class="btn">View</button></div>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="meta"><strong>Project Four</strong></div>
+              <p class="muted">Consistent project card layout created using flexbox inside each card.</p>
+            </div>
+            <div class="actions"><button class="btn">View</button></div>
+          </article>
+        </div>
+
+        <aside class="pg-sidebar" style="padding:16px">
+          <h3>About / Info</h3>
+          <p class="muted">This sidebar contains additional info: contact, skills, or brief biography. On small screens it will move below projects thanks to the responsive grid rules.</p>
+        </aside>
+      </div>
+
+    </section>
+
+    <footer class="note">Good luck with the defense — be ready to explain how you used flexbox and grid, and how your layout changes on different screen sizes.</footer>
+
+  </div>
 </body>
 </html>
